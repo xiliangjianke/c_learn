@@ -5,4 +5,10 @@ practice for call back!
 
 
 branch practice!
+<<<<<<< HEAD
 collaps!
+=======
+ssssssssssssss
+
+Creating a new branch is quick AND simple
+>>>>>>> feature1

@@ -179,3 +179,55 @@ void ToLower(char *str)
 }
 
 //void ToLower(string &str)
+// parse xml return char string
+
+int get_str_from_XML(const char *xml, const char *filed_name, char *return_value)
+{
+	char start_label[51];	
+	char end_label[51];	
+	memset(start_label, 0, sizeof(start_label));
+	memset(end_label, 0, sizeof(end_label));
+
+	int len_fn = strlen(filed_name);
+	int len_val = 0;
+
+	char *start_index = 0;
+	char *end_index = 0;
+	//memset(start_index, 0, sizeof(start_index));
+	//memset(end_index, 0, sizeof(end_index));
+
+	sprintf(start_label, "<%s>", filed_name);
+	sprintf(end_label, "</%s>", filed_name);
+
+	//start_index = (char *)strstr(xml, start_label);
+	start_index = (char *)strstr(xml, start_label);
+
+	if (start_index == 0) return -1;
+	//else end_index = (char *)strstr(start_index, end_label);
+	else end_index = strstr(start_index, end_label);
+
+	if (end_index == 0) return -1;
+	else
+	{
+		len_val = end_index - start_index - len_fn - 2;
+		strncpy(return_value, start_index + len_fn + 2, len_val);
+	}
+	return 0;
+
+}
+
+// pares xml and return int type
+int get_int_from_XML(const char *xml, const char *filed_name, int *return_value)
+{
+	char result[51];
+	memset(result, 0, sizeof(result));
+	
+	//int *return_code = 0;
+	
+	//return_code = get_str_from_XML(char *xml, char *filed_name, int *return_value);
+
+	if (get_str_from_XML(xml, filed_name, result)!= 0) return -1;
+	else (*return_value) = atoi(result);
+
+	return 0;
+}

@@ -72,3 +72,19 @@ void ToUpper(char *str);
 // str: string to be converted,char and string type are suppported
 void ToLower(char *str);
 //void ToLower(string &str);
+
+// parse xml and return char string value
+// xml: xml string
+// filed_name: label which contain value 
+// return_value: value between specifid filed_name
+// example: xml='<name>neko</name>',get_str_from_XML(xml, 'name', char temp[10]), temp = 'neko'
+int get_str_from_XML(const char *xml, const char *filed_name, char *return_value)
+
+
+
+// parse xml and return char string value
+// xml: xml int
+// filed_name: label which contain value 
+// return_value: value between specifid filed_name
+// example: xml='<age>18<nage>',get_str_from_XML(xml, 'age', char temp[10]), temp = '18'
+int get_int_from_XML(const char *xml, const char *filed_name, int *return_value)

@@ -78,7 +78,7 @@ void ToLower(char *str);
 // filed_name: label which contain value 
 // return_value: value between specifid filed_name
 // example: xml='<name>neko</name>',get_str_from_XML(xml, 'name', char temp[10]), temp = 'neko'
-int get_str_from_XML(const char *xml, const char *filed_name, char *return_value)
+int get_str_from_XML(const char *xml, const char *filed_name, char *return_value);
 
 
 
@@ -87,4 +87,53 @@ int get_str_from_XML(const char *xml, const char *filed_name, char *return_value
 // filed_name: label which contain value 
 // return_value: value between specifid filed_name
 // example: xml='<age>18<nage>',get_str_from_XML(xml, 'age', char temp[10]), temp = '18'
-int get_int_from_XML(const char *xml, const char *filed_name, int *return_value)
+int get_int_from_XML(const char *xml, const char *filed_name, int *return_value);
+
+// convert integer time to string time
+// ltime: time in format integer,such as :time_t tnow;time(&tnow);
+// stime: 
+//void timetostr(const time_t ltime,char *stime,const char *fmt=0);
+
+
+class CTcpClient
+{
+public:
+	int m_sockfd;
+
+	CTcpClient();
+
+	// request to server
+	bool connect_to_server(const char *serverip, const int port);
+	// send message
+	int Send(int sockfd, const void *buf, const int buflen, int i);
+	//int send(const void *buf, const int buflen);
+	// accept message
+	//int recv(void *buf, const int buflen);
+
+	int Recv(int sockfd, void *buf, const int buflen, int i);
+
+	~CTcpClient();
+};
+
+class CTcpServer
+{
+public:
+	int m_listenfd; // listen socket in server
+	int m_clientfd; // client socket which connect to server
+
+	CTcpServer();
+
+	bool init_server(int port); //initialize server
+
+	bool Accept();  // wait for connection
+
+	// send message
+	int Send(int sockfd, const void *buf, const int buflen, int i);
+	//int send(const void *buf, const int buflen);
+	// accept message
+	//int recv(void *buf, const int buflen);
+
+	int Recv(int sockfd, void *buf, const int buflen, int i);
+
+	~CTcpServer();
+};
